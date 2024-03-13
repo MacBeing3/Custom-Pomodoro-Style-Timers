@@ -6,7 +6,7 @@ extends Control
 @onready var decrease_button : Button = $ContentsContainer/Control/ButtonAndDisplay/DecreaseButton
 @onready var work_label :Label = $ContentsContainer/Control/ButtonAndDisplay/TimeRect/TimeSet
 
-@onready var active_unit= get_tree().get_root().get_child(0).get_child(0).get_node("TextureRect/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
+@onready var active_unit= get_tree().get_root().get_child(0).get_child(0).get_node("BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
 @onready var drop_container = active_unit.get_node("Container")
 
 @export var task_name:String = "Preset"
@@ -78,10 +78,8 @@ func _get_preview_control() -> Control:
 
 
 func _input(event):
-	print("I am called lol")
 	if event is InputEventMouseButton:
 		if event.is_pressed() == false and drop_container.visible == true:
 			await get_tree().create_timer(0.05).timeout
 			drop_container.visible = false
 
-	print("drop conater  ", drop_container.visible)

@@ -4,13 +4,16 @@ class_name MainWindow
 @onready var packed_scene_active_unit: PackedScene = preload("res://src/V2_Block_Template.tscn")
 @onready var pck_scne_task_box: PackedScene = preload("res://src/task_box.tscn")
 
-@onready var grid_container:= $TextureRect/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer
+@onready var grid_container:= $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer
 signal window_visible
 signal window_hide
 
-@onready var active_unit := $TextureRect/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
-@onready var sched_vbox := $TextureRect/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/ScheduleVBox
-@onready var sched_button :Button= $TextureRect/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
+@onready var active_unit := $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
+@onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/ScheduleVBox
+@onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
+
+@onready var dev_mode_toggle_button:CheckButton= get_parent().get_node("CheckButton")
+var dev_mode_enabled :bool= false
 
 var timers_scheduled:Array #array of dictionaries: "name", "duration" #export this so can easily save presets?
 var bound_timers:Array
@@ -113,6 +116,7 @@ func _on_add_task_button_pressed():
 	var new_task_box_inst = pck_scne_task_box.instantiate()
 	new_task_box_inst.nom = active_unit.name_bar.text
 	new_task_box_inst.minutes = active_unit.minutes_duration
+	new_task_box_inst
 	
 	sched_vbox.add_child(new_task_box_inst)
 	
@@ -161,3 +165,9 @@ func _reset_schedule():
 
 func _on_cancel_pressed():
 	_reset_schedule()
+
+
+func _on_check_button_pressed():
+	dev_mode_enabled = not dev_mode_enabled
+
+	print("devmode", dev_mode_enabled)
