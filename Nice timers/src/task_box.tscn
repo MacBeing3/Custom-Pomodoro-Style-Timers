@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjbskgcmq6d60"]
+
+[ext_resource type="Script" path="res://src/task_box.gd" id="1_bu4so"]
+[ext_resource type="AudioStream" uid="uid://dvwtbwcobpyrt" path="res://assets/kenney ui audio/switch35.ogg" id="2_sel7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pi5o"]
+bg_color = Color(0.858824, 0.65098, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyvq2"]
+bg_color = Color(0.6, 0.6, 0.6, 0.470588)
+
+[node name="TaskBox" type="ProgressBar"]
+offset_right = 212.0
+offset_bottom = 125.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_0pi5o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cyvq2")
+max_value = 1.0
+show_percentage = false
+script = ExtResource("1_bu4so")
+dev_mode = true
+
+[node name="TaskName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_right = 40.5
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "task name"
+
+[node name="TaskMinutes" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "minutes"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AlarmTimerOff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sel7v")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

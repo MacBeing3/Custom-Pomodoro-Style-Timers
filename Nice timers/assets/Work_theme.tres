@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dnfite8qns327"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkn45"]
+bg_color = Color(0.0941176, 0.454902, 0.596078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68n6j"]
+bg_color = Color(0.211765, 0.682353, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64akq"]
+bg_color = Color(0, 0.686275, 0.686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eccyn"]
+bg_color = Color(0.921569, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxbln"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5p33"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgrm1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njd82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pcf7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg6p6"]
+bg_color = Color(0, 0.721569, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3iyy0"]
+bg_color = Color(0.0941176, 0.454902, 0.596078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd426"]
+bg_color = Color(0.211765, 0.682353, 0.486275, 1)
+
+[resource]
+/styles/Background = SubResource("StyleBoxFlat_fkn45")
+/styles/Fill = SubResource("StyleBoxFlat_68n6j")
+/styles/Normal = SubResource("StyleBoxFlat_64akq")
+/styles/Reverse = SubResource("StyleBoxFlat_eccyn")
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0)
+Button/styles/disabled = SubResource("StyleBoxFlat_rxbln")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_d5p33")
+CheckButton/styles/hover = SubResource("StyleBoxFlat_tgrm1")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_njd82")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_1pcf7")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_dg6p6")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_3iyy0")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_nd426")

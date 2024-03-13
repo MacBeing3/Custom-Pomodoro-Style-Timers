@@ -1,0 +1,166 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4nb2kifolkrn"]
+
+[ext_resource type="Theme" uid="uid://dnfite8qns327" path="res://assets/Work_theme.tres" id="1_lepp6"]
+[ext_resource type="Script" path="res://src/CoolTimer.gd" id="2_fjlyf"]
+[ext_resource type="StyleBox" uid="uid://bseuiwgfunvx8" path="res://assets/on_fill_stylebox.tres" id="3_jb6ry"]
+[ext_resource type="StyleBox" uid="uid://1ca2pexrg0wc" path="res://assets/off_fill_stylebox.tres" id="4_ndttj"]
+[ext_resource type="PackedScene" uid="uid://cvurnjhgepksg" path="res://src/SettingWorkTimer.tscn" id="5_myxeg"]
+[ext_resource type="Script" path="res://src/TimerBar.gd" id="6_iox2h"]
+[ext_resource type="PackedScene" uid="uid://dm14kkws0vu6d" path="res://src/confirm_timer_popup.tscn" id="7_h7env"]
+
+[node name="CoolTimer" type="Control"]
+custom_minimum_size = Vector2(345, 270)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 345.0
+offset_bottom = 270.0
+size_flags_horizontal = 8
+theme = ExtResource("1_lepp6")
+script = ExtResource("2_fjlyf")
+on_prog_bar_stylebox = ExtResource("3_jb6ry")
+off_prog_bar_stylebox = ExtResource("4_ndttj")
+
+[node name="Work" type="Timer" parent="."]
+one_shot = true
+
+[node name="Pause" type="Timer" parent="."]
+one_shot = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(230, 180)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00375, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Control/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.00392157, 0.196078, 0.12549, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingWorkTimer" parent="Control/VBoxContainer" instance=ExtResource("5_myxeg")]
+layout_mode = 2
+
+[node name="TimerBar" type="ProgressBar" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_lepp6")
+max_value = 1.0
+step = 0.005
+show_percentage = false
+script = ExtResource("6_iox2h")
+
+[node name="TotalTime" type="Label" parent="Control/VBoxContainer/TimerBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_right = 71.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "Timer: _ minutes"
+horizontal_alignment = 1
+
+[node name="CurrentMode" type="Label" parent="Control/VBoxContainer/TimerBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Mode: On/off %s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/VBoxContainer/TimerBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.5
+offset_right = 100.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+collapsed = true
+dragger_visibility = 2
+
+[node name="DecreaseButton" type="Button" parent="Control/VBoxContainer/TimerBar/HSplitContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "<"
+
+[node name="IncreaseButton" type="Button" parent="Control/VBoxContainer/TimerBar/HSplitContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = ">"
+
+[node name="StartButton" type="Button" parent="Control/VBoxContainer/TimerBar"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 30.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="ContinuousButton" type="CheckButton" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Continuous Mode"
+alignment = 1
+
+[node name="ConfirmTimerPopup" parent="." instance=ExtResource("7_h7env")]
+popup_window = true
+
+[connection signal="timer_started" from="." to="Control/VBoxContainer/SettingWorkTimer" method="_on_cool_timer_timer_started"]
+[connection signal="timeout" from="Work" to="." method="_on_work_timeout"]
+[connection signal="timeout" from="Pause" to="." method="_on_pause_timeout"]
+[connection signal="pressed" from="Control/VBoxContainer/TimerBar/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="toggled" from="Control/VBoxContainer/ContinuousButton" to="." method="_on_continuous_button_toggled"]

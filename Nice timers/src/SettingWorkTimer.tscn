@@ -1,0 +1,162 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvurnjhgepksg"]
+
+[ext_resource type="Script" path="res://src/SettingWorkTimer.gd" id="1_gp7xl"]
+
+[node name="SettingWorkTimer" type="HSplitContainer"]
+custom_minimum_size = Vector2(220, 0)
+offset_right = 220.0
+offset_bottom = 43.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+collapsed = true
+dragger_visibility = 2
+script = ExtResource("1_gp7xl")
+
+[node name="OnButton" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 1
+
+[node name="ColorRect" type="ColorRect" parent="OnButton"]
+custom_minimum_size = Vector2(40, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="OnLabel" type="Label" parent="OnButton/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -8.5
+offset_right = 46.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "On
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonAndDisplay" type="HBoxContainer" parent="OnButton"]
+layout_mode = 2
+
+[node name="DecreaseButton" type="Button" parent="OnButton/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = "<"
+
+[node name="TimeRect" type="ColorRect" parent="OnButton/ButtonAndDisplay"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(1, 0.0431373, 1, 1)
+
+[node name="TimeSet" type="Label" parent="OnButton/ButtonAndDisplay/TimeRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "%min"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="OnButton/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = ">"
+
+[node name="OffButton" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 1
+
+[node name="ColorRect" type="ColorRect" parent="OffButton"]
+custom_minimum_size = Vector2(40, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="OffButton/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -8.5
+offset_right = 46.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Off
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonAndDisplay" type="HBoxContainer" parent="OffButton"]
+layout_mode = 2
+
+[node name="DecreaseButton" type="Button" parent="OffButton/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = "<"
+
+[node name="TimeRect" type="ColorRect" parent="OffButton/ButtonAndDisplay"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(1, 0.0431373, 1, 1)
+
+[node name="TimeSet" type="Label" parent="OffButton/ButtonAndDisplay/TimeRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "%min"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="OffButton/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 15
+text = ">"
+
+[connection signal="pressed" from="OnButton/ButtonAndDisplay/DecreaseButton" to="." method="_on_work_decrease_button_pressed"]
+[connection signal="button_up" from="OnButton/ButtonAndDisplay/IncreaseButton" to="." method="_on_work_increase_button_button_up"]
+[connection signal="pressed" from="OffButton/ButtonAndDisplay/DecreaseButton" to="." method="_on_pause_decrease_button_pressed"]
+[connection signal="pressed" from="OffButton/ButtonAndDisplay/IncreaseButton" to="." method="_on_pause_increase_button_pressed"]

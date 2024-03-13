@@ -1,0 +1,174 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvbalxpb2oxtk"]
+
+[ext_resource type="Script" path="res://src/CoolTimer.gd" id="1_xalpg"]
+[ext_resource type="Theme" uid="uid://dnfite8qns327" path="res://assets/Work_theme.tres" id="2_btrd6"]
+[ext_resource type="Script" path="res://src/TimerBar.gd" id="3_bf2qj"]
+[ext_resource type="PackedScene" uid="uid://cvurnjhgepksg" path="res://src/SettingWorkTimer.tscn" id="3_md3sb"]
+[ext_resource type="StyleBox" uid="uid://bseuiwgfunvx8" path="res://assets/on_fill_stylebox.tres" id="3_s1mvn"]
+[ext_resource type="StyleBox" uid="uid://1ca2pexrg0wc" path="res://assets/off_fill_stylebox.tres" id="4_dngno"]
+[ext_resource type="AudioStream" uid="uid://ce74ftaj7hsvn" path="res://assets/kenney ui audio/switch34.ogg" id="7_8d78j"]
+
+[node name="CoolTimer" type="Control"]
+custom_minimum_size = Vector2(230, 202)
+layout_mode = 3
+anchor_right = 0.269
+anchor_bottom = 0.421
+offset_right = -114.32
+offset_bottom = -101.12
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.49965, 1.49965)
+size_flags_horizontal = 8
+theme = ExtResource("2_btrd6")
+script = ExtResource("1_xalpg")
+on_prog_bar_stylebox = ExtResource("3_s1mvn")
+off_prog_bar_stylebox = ExtResource("4_dngno")
+add_popup_child_to = "PopupContainer/VBoxContainer"
+
+[node name="Work" type="Timer" parent="."]
+one_shot = true
+
+[node name="Pause" type="Timer" parent="."]
+one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(230, 202)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.00392157, 0.196078, 0.12549, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="CenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 0
+placeholder_text = "Pomodoro Name"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="SettingWorkTimer" parent="CenterContainer/VBoxContainer" instance=ExtResource("3_md3sb")]
+layout_mode = 2
+
+[node name="TimerBar" type="ProgressBar" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_btrd6")
+max_value = 1.0
+step = 0.005
+show_percentage = false
+script = ExtResource("3_bf2qj")
+
+[node name="TotalTime" type="Label" parent="CenterContainer/VBoxContainer/TimerBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -71.5
+offset_right = 71.5
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 12
+text = "Timer: _ minutes"
+horizontal_alignment = 1
+
+[node name="CurrentMode" type="Label" parent="CenterContainer/VBoxContainer/TimerBar"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -20.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Mode: On/off %s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CenterContainer/VBoxContainer/TimerBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -15.5
+offset_right = 100.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+collapsed = true
+dragger_visibility = 2
+
+[node name="DecreaseButton" type="Button" parent="CenterContainer/VBoxContainer/TimerBar/HSplitContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "<"
+
+[node name="IncreaseButton" type="Button" parent="CenterContainer/VBoxContainer/TimerBar/HSplitContainer"]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = ">"
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/TimerBar"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 30.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="ContinuousButton" type="CheckButton" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Continuous Mode"
+alignment = 1
+
+[node name="AlarmTimerOff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8d78j")
+pitch_scale = 0.89
+max_polyphony = 2
+
+[connection signal="timeout" from="Work" to="." method="_on_work_timeout"]
+[connection signal="timeout" from="Pause" to="." method="_on_pause_timeout"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TimerBar/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/ContinuousButton" to="." method="_on_continuous_button_toggled"]

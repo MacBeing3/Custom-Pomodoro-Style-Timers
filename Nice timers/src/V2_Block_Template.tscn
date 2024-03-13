@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://cykgmfsn1whj8"]
+
+[ext_resource type="Theme" uid="uid://dnfite8qns327" path="res://assets/Work_theme.tres" id="1_hobkq"]
+[ext_resource type="Script" path="res://src/V2_Timer_Unit.gd" id="2_82eah"]
+[ext_resource type="AudioStream" uid="uid://ce74ftaj7hsvn" path="res://assets/kenney ui audio/switch34.ogg" id="7_qetub"]
+
+[node name="V2BlockTemplate" type="Control"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -55.0
+offset_right = 190.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hobkq")
+script = ExtResource("2_82eah")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.00392157, 0.196078, 0.12549, 1)
+
+[node name="ContentsContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+split_offset = -150
+dragger_visibility = 1
+
+[node name="TaskName" type="TextEdit" parent="ContentsContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 0
+placeholder_text = "Pomodoro Name"
+context_menu_enabled = false
+shortcut_keys_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+scroll_fit_content_height = true
+
+[node name="Control" type="MarginContainer" parent="ContentsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 10
+
+[node name="ButtonAndDisplay" type="HBoxContainer" parent="ContentsContainer/Control"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="DecreaseButton" type="Button" parent="ContentsContainer/Control/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "<"
+
+[node name="TimeRect" type="ColorRect" parent="ContentsContainer/Control/ButtonAndDisplay"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 0.0431373, 1, 1)
+
+[node name="TimeSet" type="Label" parent="ContentsContainer/Control/ButtonAndDisplay/TimeRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "%min"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IncreaseButton" type="Button" parent="ContentsContainer/Control/ButtonAndDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = ">"
+
+[node name="AlarmTimerOff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qetub")
+pitch_scale = 0.89
+max_polyphony = 2
