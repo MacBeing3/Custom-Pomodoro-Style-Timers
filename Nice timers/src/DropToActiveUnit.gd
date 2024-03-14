@@ -4,7 +4,7 @@ extends Container
 signal active_unit_hidden(b:bool)
 
 
-func _can_drop_data(position, data):
+func _can_drop_data(_position, data):
 	print("can drop")
 	return typeof(data) == TYPE_DICTIONARY and data.has("name") and data.has("duration")
 

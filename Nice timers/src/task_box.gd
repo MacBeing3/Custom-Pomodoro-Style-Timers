@@ -25,7 +25,7 @@ func _ready():
 
 	
 	
-func _process(delta):
+func _process(_delta):
 	time_left = timer.get_time_left()
 	var percent_full = 1 - time_left/timer.get_wait_time()
 	

@@ -12,7 +12,7 @@ signal window_hide
 @onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/ScheduleVBox
 @onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
 
-@onready var dev_mode_toggle_button:CheckButton= get_parent().get_node("CheckButton")
+@onready var dev_mode_toggle_button:CheckButton= get_node("CheckButton")
 var dev_mode_enabled :bool= false
 
 var timers_scheduled:Array #array of dictionaries: "name", "duration" #export this so can easily save presets?
