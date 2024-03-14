@@ -116,7 +116,7 @@ func _on_add_task_button_pressed():
 	var new_task_box_inst = pck_scne_task_box.instantiate()
 	new_task_box_inst.nom = active_unit.name_bar.text
 	new_task_box_inst.minutes = active_unit.minutes_duration
-	new_task_box_inst
+	new_task_box_inst.dev_mode = dev_mode_enabled
 	
 	sched_vbox.add_child(new_task_box_inst)
 	
