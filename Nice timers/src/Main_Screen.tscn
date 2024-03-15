@@ -225,11 +225,11 @@ text = "  Restart"
 
 [node name="Button" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
 layout_mode = 2
-text = "Del-All"
+text = "Pause"
 
 [node name="Button2" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
 layout_mode = 2
-text = "Pause"
+text = "Loop"
 
 [node name="ScheduleVBox" type="VBoxContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer"]
 layout_mode = 2

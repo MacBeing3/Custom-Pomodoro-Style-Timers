@@ -47,3 +47,12 @@ func _on_timer_timeout():
 func _on_popup_pressed() -> void:
 	window_hide.emit()
 	$AlarmTimerOff.stop()
+
+
+func _check_dev_mode():
+	timer.stop()
+	if dev_mode:
+		timer.start(minutes)
+	else: timer.start(minutes*60)
+	
+	timer.set_paused(true)

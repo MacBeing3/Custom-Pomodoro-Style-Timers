@@ -154,9 +154,12 @@ func _reset_schedule():
 		
 	for child in sched_vbox.get_child_count():
 		sched_vbox.get_child(child).value = 0
+
 		var dictionary = timers_scheduled[child]
 		sched_vbox.get_child(child).timer.start(dictionary["duration"])
 		
+		sched_vbox.get_child(child).dev_mode = dev_mode_enabled
+		sched_vbox.get_child(child)._check_dev_mode()
 		sched_vbox.get_child(child).timer.set_paused(true)
 			
 	schedule_button_function = "Start Schedule"
@@ -169,5 +172,6 @@ func _on_cancel_pressed():
 
 func _on_check_button_pressed():
 	dev_mode_enabled = not dev_mode_enabled
-
 	print("devmode", dev_mode_enabled)
+
+	_reset_schedule()
