@@ -11,6 +11,8 @@ signal window_hide
 @onready var active_unit := $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
 @onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/ScheduleVBox
 @onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
+@onready var rest_clr_button:Button=$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/ResetButton
+
 
 @onready var dev_mode_toggle_button:CheckButton= get_node("CheckButton")
 var dev_mode_enabled :bool= false
@@ -35,8 +37,14 @@ var schedule_button_function= "paused":
 	get:
 		return schedule_button_function
 
+var rest_clr_button_function = "reset":
+	set(state):
+		rest_clr_button_function = state
+		rest_clr_button.text = state
 
-
+	get:
+		return rest_clr_button_function
+	
 func _ready():
 	timer_popup_instance = timer_popup_scene.instantiate()
 	var project_root_node := get_tree().get_root().get_node("ProjectManagerNode")
@@ -140,8 +148,9 @@ func _on_timer_transition():
 		window_visible.emit()
 
 		
-	else: 
+	else: #if end of timer
 		schedule_button_function = "                                             ↗"
+		
 
 
 func _on_popup_pressed() -> void:
@@ -150,20 +159,28 @@ func _on_popup_pressed() -> void:
 	
 	
 func _reset_schedule():
-	popup_called_times = 0
+	if rest_clr_button_function == "reset":
+		popup_called_times = 0
 		
-	for child in sched_vbox.get_child_count():
-		sched_vbox.get_child(child).value = 0
+		for child in sched_vbox.get_child_count():
+			sched_vbox.get_child(child).value = 0
 
-		var dictionary = timers_scheduled[child]
-		sched_vbox.get_child(child).timer.start(dictionary["duration"])
-		
-		sched_vbox.get_child(child).dev_mode = dev_mode_enabled
-		sched_vbox.get_child(child)._check_dev_mode()
-		sched_vbox.get_child(child).timer.set_paused(true)
+			var dictionary = timers_scheduled[child]
+			sched_vbox.get_child(child).timer.start(dictionary["duration"])
 			
-	schedule_button_function = "Start Schedule"
+			sched_vbox.get_child(child).dev_mode = dev_mode_enabled
+			sched_vbox.get_child(child)._check_dev_mode()
+			sched_vbox.get_child(child).timer.set_paused(true)
+				
+		schedule_button_function = "Start Schedule"
+		rest_clr_button_function = "Clear"
 
+	elif rest_clr_button_function == "Clear":
+		for child in sched_vbox.get_child_count():
+			sched_vbox.get_child(child).call_deferred("queue_free")
+			
+		timers_scheduled = []
+	
 
 
 func _on_cancel_pressed():
