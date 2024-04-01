@@ -4,7 +4,7 @@ class_name MainWindow
 @onready var packed_scene_active_unit: PackedScene = preload("res://src/V2_Block_Template.tscn")
 @onready var pck_scne_task_box: PackedScene = preload("res://src/task_box.tscn")
 
-@onready var grid_container:= $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer
+@onready var grid_container:= $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer
 signal window_visible
 signal window_hide
 

@@ -7,7 +7,6 @@ extends Control
 @onready var work_label :Label = $ContentsContainer/Control/ButtonAndDisplay/TimeRect/TimeSet
 
 @onready var active_unit= get_tree().get_root().get_child(0).get_child(0).get_node("BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
-@onready var drop_container = active_unit.get_node("Container")
 
 @export var task_name:String = "Preset"
 @export var minutes_duration: int = 1
@@ -30,8 +29,7 @@ func _ready():
 func _get_drag_data(position):
 	print("get drag data going brr")
 #	active_unit_hidden.emit(true)
-	drop_container.visible = true
-	print("dip cont ",drop_container)
+
 	var preset_data = {"name":name_bar.text, "duration":minutes_duration}
 	
 	set_drag_preview(_get_preview_control())
@@ -76,10 +74,10 @@ func _get_preview_control() -> Control:
 	preview.set_rotation(.1) # in readians
 	return preview
 
-
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.is_pressed() == false and drop_container.visible == true:
-			await get_tree().create_timer(0.05).timeout
-			drop_container.visible = false
+#
+#func _input(event):
+#	if event is InputEventMouseButton:
+#		if event.is_pressed() == false and drop_container.visible == true:
+#			await get_tree().create_timer(0.05).timeout
+#			drop_container.visible = false
 

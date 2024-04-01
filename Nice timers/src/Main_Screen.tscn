@@ -60,68 +60,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 color = Color(1, 0.627451, 1, 0.392157)
 
-[node name="TaskVsPresetDivider" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 90
-split_offset = -20
-dragger_visibility = 1
-
-[node name="TaskBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider"]
+[node name="PresetsBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
 layout_mode = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 0.72549)
-
-[node name="MarginContainer" type="MarginContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme_override_constants/margin_top = 50
-
-[node name="SelectedTaskContainer" type="HSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 90
-split_offset = 20
-dragger_visibility = 1
-
-[node name="ActiveUnit" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer" instance=ExtResource("4_s1j66")]
-layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-is_active_unit = true
-
-[node name="Container" type="Container" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit"]
-visible = false
-modulate = Color(0, 0, 1, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_4trxd")
-
-[node name="AddTaskButton" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Add Task"
-
-[node name="PresetsBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider"]
-layout_mode = 2
+offset_right = 815.0
+offset_bottom = 670.0
 size_flags_vertical = 3
 color = Color(1, 1, 0.219608, 0.545098)
 
-[node name="VSplitContainer" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground"]
+[node name="VSplitContainer" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,30 +76,31 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
+split_offset = 100
 dragger_visibility = 1
 
-[node name="TopButtons" type="HBoxContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer"]
+[node name="TopButtons" type="HBoxContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="CreateNewTimer" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/TopButtons"]
+[node name="CreateNewTimer" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/TopButtons"]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_horizontal = 3
 text = "Create New Preset"
 
-[node name="Button" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/TopButtons"]
+[node name="Button" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/TopButtons"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Import Presets"
 
-[node name="PresetsScrollContainer" type="ScrollContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer"]
+[node name="PresetsScrollContainer" type="ScrollContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer"]
 custom_minimum_size = Vector2(0, 202)
 layout_mode = 2
 size_flags_vertical = 3
 vertical_scroll_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -161,27 +108,27 @@ theme_override_constants/h_separation = 200
 theme_override_constants/v_separation = 50
 columns = 2
 
-[node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
 task_name = "W5"
 minutes_duration = 5
 
-[node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
 task_name = "Short Break"
 minutes_duration = 5
 
-[node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
 task_name = "W10"
 minutes_duration = 10
 
-[node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
 task_name = "Long Break"
 minutes_duration = 15
 
-[node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
 task_name = "W15"
 minutes_duration = 15
@@ -296,8 +243,7 @@ offset_right = 32.0
 offset_bottom = 16.0
 text = "Dv mde"
 
-[connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/AddTaskButton" to="." method="_on_add_task_button_pressed"]
-[connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/PresetsBackground/VSplitContainer/TopButtons/CreateNewTimer" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/TopButtons/CreateNewTimer" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule" to="." method="_on_start_schedule_pressed"]
 [connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/ResetButton" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
