@@ -231,10 +231,32 @@ text = "Pause"
 layout_mode = 2
 text = "Loop"
 
-[node name="ScheduleVBox" type="VBoxContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer"]
+[node name="Control" type="Control" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="ScheduleVBox" type="VBoxContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 10
+
+[node name="Container2" type="Container" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/Control"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("5_4trxd")
+is_active_unit_child = false
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"

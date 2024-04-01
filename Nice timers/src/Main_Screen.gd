@@ -9,7 +9,7 @@ signal window_visible
 signal window_hide
 
 @onready var active_unit := $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
-@onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/ScheduleVBox
+@onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/Control/ScheduleVBox
 @onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
 @onready var rest_clr_button:Button=$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/ResetButton
 
@@ -37,7 +37,7 @@ var schedule_button_function= "paused":
 	get:
 		return schedule_button_function
 
-var rest_clr_button_function = "reset":
+var rest_clr_button_function = "Restart":
 	set(state):
 		rest_clr_button_function = state
 		rest_clr_button.text = state
@@ -129,7 +129,7 @@ func _on_add_task_button_pressed():
 	sched_vbox.add_child(new_task_box_inst)
 	
 	bound_timers = []
-	num_tasks = -1
+	num_tasks = -1 #ERROR 1
 	for dictionary in timers_scheduled:
 		num_tasks+=1
 		bound_timers.push_back(sched_vbox.get_child(num_tasks).get_node("Timer"))
@@ -159,11 +159,14 @@ func _on_popup_pressed() -> void:
 	
 	
 func _reset_schedule():
-	if rest_clr_button_function == "reset":
+
+	
+	if rest_clr_button_function == "Restart" and sched_vbox.get_child_count() != 0:
 		popup_called_times = 0
 		
 		for child in sched_vbox.get_child_count():
-			sched_vbox.get_child(child).value = 0
+			if sched_vbox.get_child(child) is Container:
+				sched_vbox.get_child(child).value = 0
 
 			var dictionary = timers_scheduled[child]
 			sched_vbox.get_child(child).timer.start(dictionary["duration"])
@@ -180,7 +183,8 @@ func _reset_schedule():
 			sched_vbox.get_child(child).call_deferred("queue_free")
 			
 		timers_scheduled = []
-	
+		schedule_button_function = "Invalid"
+		rest_clr_button_function = "Restart"
 
 
 func _on_cancel_pressed():
@@ -192,3 +196,38 @@ func _on_check_button_pressed():
 	print("devmode", dev_mode_enabled)
 
 	_reset_schedule()
+	
+	
+	#redoing function to take inputs instead
+	
+func drag_on_add_task_button_pressed(task_name, task_duration):
+	#task_name shoudl be name_bar.text 				of the dragged
+	#task_duration should be minutes_duration 		of the dragged
+
+	#adds new to timers_schedule
+	var new_task:= {}
+	new_task["name"] =  task_name			#name_bar.text
+	new_task["duration"] = task_duration		#minutes_duration
+	
+	timers_scheduled.push_back(new_task)
+	#worth saving the taking of the array if want to have imports/presets
+
+	print("timer scheduled    ", timers_scheduled)
+	
+	#assign task_boxes from dictionary			#would just need to call this if importing list
+	if timers_scheduled.size()>=1:
+		schedule_button_function= "Start Schedule"
+	
+	#instanciate taskbox scene were task_name is active.namebar.text, taskminutes is active.minutesdura, and timer dur is active.minutesdura
+	var new_task_box_inst = pck_scne_task_box.instantiate()
+	new_task_box_inst.nom = task_name		#new.nom = name_bar.text 
+	new_task_box_inst.minutes = task_duration	#new.minutes = minutes_duration
+	new_task_box_inst.dev_mode = dev_mode_enabled			#new.dev_mode = dev_mode_enabled
+	
+	sched_vbox.add_child(new_task_box_inst)
+	
+	bound_timers = []
+	num_tasks = -1
+	for dictionary in timers_scheduled:
+		num_tasks+=1
+		bound_timers.push_back(sched_vbox.get_child(num_tasks).get_node("Timer"))

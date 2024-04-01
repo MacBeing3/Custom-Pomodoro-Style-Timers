@@ -1,5 +1,6 @@
 extends ProgressBar
 
+
 @onready var timer: Timer= $Timer
 @onready var time_left:float
 @onready var nom: String
