@@ -8,6 +8,8 @@ bg_color = Color(0.6, 0, 1, 1)
 [node name="ConfirmTimerPopup" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_eiuan")
 
 [node name="StartNextTimer" type="Button" parent="."]
@@ -16,12 +18,17 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -75.0
+offset_right = 64.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_1kbgu")
 text = "Start Next Timer"
 
-[node name="Label" type="Label" parent="StartNextTimer"]
+[node name="TimerName" type="Label" parent="StartNextTimer"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -30,6 +37,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
+text = "Timer Name"
 
 [node name="ColorRect" type="ColorRect" parent="StartNextTimer"]
 visible = false
