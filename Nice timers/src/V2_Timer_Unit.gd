@@ -6,7 +6,7 @@ extends Control
 @onready var decrease_button : Button = $ContentsContainer/Control/ButtonAndDisplay/DecreaseButton
 @onready var work_label :Label = $ContentsContainer/Control/ButtonAndDisplay/TimeRect/TimeSet
 
-@onready var active_unit= get_tree().get_root().get_child(0).get_child(0).get_node("BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
+@onready var active_unit #= get_tree().get_root().get_child(0).get_child(0).get_node("BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
 
 @export var task_name:String = "Preset"
 @export var minutes_duration: int = 1
@@ -26,7 +26,7 @@ func _ready():
 	increase_button.pressed.connect(_on_increase_button_pressed)
 	decrease_button.pressed.connect(_on_decrease_button_pressed)
 
-func _get_drag_data(position):
+func _get_drag_data(_position):
 	print("get drag data going brr")
 #	active_unit_hidden.emit(true)
 
@@ -47,7 +47,7 @@ func _on_decrease_button_pressed():
 
 
 
-func _on_changed_label(type, label, minutes):
+func _on_changed_label(_type, label, minutes):
 	label.text = str(minutes) + " min"
 	
 
@@ -67,7 +67,7 @@ func _get_preview_control() -> Control:
 #    It will be deleted automatically after the drag has ended.
 #    """
 	var preview = ColorRect.new()
-	preview.size = Vector2(300*1/2,100*1/2)
+	preview.size = Vector2(300.0*0.50,100.0*0.50)
 	var preview_color = Color(1/255,50/255,32/255)
 	preview_color.a = .5
 	preview.color = preview_color

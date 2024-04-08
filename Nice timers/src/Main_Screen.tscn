@@ -170,7 +170,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 text = "  Restart"
 
-[node name="Button" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
+[node name="PausePlayButton" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
 layout_mode = 2
 text = "Pause"
 

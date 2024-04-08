@@ -8,11 +8,15 @@ class_name MainWindow
 signal window_visible
 signal window_hide
 
-@onready var active_unit := $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
+#active unit outdated
+@onready var active_unit #:= $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit
 @onready var sched_vbox := $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/Control/ScheduleVBox
 @onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
 @onready var rest_clr_button:Button=$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/ResetButton
+@onready var pause_play_button:Button = 	$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/PausePlayButton
 
+
+@onready var current_timer:Timer = null
 
 @onready var dev_mode_toggle_button:CheckButton= get_node("CheckButton")
 var dev_mode_enabled :bool= false
@@ -27,6 +31,16 @@ var num_tasks :int= 0
 @onready var timer_popup_instance
 @export var add_popup_child_to: String
 var popup_called_times:int=0
+
+var is_timers_paused = false:
+	set(pause_state):
+		is_timers_paused = pause_state
+		if pause_state == false:
+			pause_play_button.text = "| |"
+			
+		else: pause_play_button.text = "|>"
+		
+	get: return is_timers_paused
 
 var schedule_button_function= "paused":
 	set(state):
@@ -50,7 +64,7 @@ func _ready():
 	var project_root_node := get_tree().get_root().get_node("ProjectManagerNode")
 
 
-
+	is_timers_paused = true
 		
 
 	project_root_node.get_node(add_popup_child_to).add_child.call_deferred(timer_popup_instance)
@@ -60,6 +74,7 @@ func _ready():
 
 
 
+	pause_play_button.pressed.connect(_on_pause_play_button_pressed)
 	timer_popup_instance.popup_button_pressed.connect(_on_popup_pressed)
 	
 	window_visible.connect(timer_popup_instance._on_window_visible)
@@ -86,6 +101,8 @@ func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
 	
 	if schedule_button_function == "Start Schedule":
 		bound_timers[0].set_paused(false)
+		is_timers_paused = false
+		rest_clr_button_function = "Restart"
 		print(bound_timers[0])
 		
 
@@ -103,7 +120,7 @@ func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
 		_reset_schedule()
 
 	else: return
-func _on_add_task_button_pressed():
+func _on_add_task_button_pressed(): #not used now I belive
 	
 	
 	#adds new to timers_schedule
@@ -138,12 +155,13 @@ func _on_timer_transition():
 
 	if popup_called_times < bound_timers.size():
 		bound_timers[popup_called_times].set_paused(false)
+		is_timers_paused = false
 		print(bound_timers[popup_called_times])
 		
 		await bound_timers[popup_called_times].timeout
 		
 		if popup_called_times == bound_timers.size() - 1:
-			timer_popup_instance.get_node("StartNextTimer").text = "End Timer"
+			timer_popup_instance.get_node("StartNextTimer").text = "End Sched"
 		
 		window_visible.emit()
 
@@ -170,10 +188,12 @@ func _reset_schedule():
 
 			var dictionary = timers_scheduled[child]
 			sched_vbox.get_child(child).timer.start(dictionary["duration"])
+			current_timer = sched_vbox.get_child(child).timer
 			
 			sched_vbox.get_child(child).dev_mode = dev_mode_enabled
 			sched_vbox.get_child(child)._check_dev_mode()
 			sched_vbox.get_child(child).timer.set_paused(true)
+			is_timers_paused = true
 				
 		schedule_button_function = "Start Schedule"
 		rest_clr_button_function = "Clear"
@@ -181,7 +201,8 @@ func _reset_schedule():
 	elif rest_clr_button_function == "Clear":
 		for child in sched_vbox.get_child_count():
 			sched_vbox.get_child(child).call_deferred("queue_free")
-			
+		
+		current_timer = null
 		timers_scheduled = []
 		schedule_button_function = "Invalid"
 		rest_clr_button_function = "Restart"
@@ -229,5 +250,22 @@ func drag_on_add_task_button_pressed(task_name, task_duration):
 	bound_timers = []
 	num_tasks = -1
 	for dictionary in timers_scheduled:
+			
 		num_tasks+=1
 		bound_timers.push_back(sched_vbox.get_child(num_tasks).get_node("Timer"))
+		
+	
+	if current_timer == null:
+		current_timer = bound_timers[0]
+
+func _on_pause_play_button_pressed():
+	print(is_timers_paused)
+	if current_timer:
+
+		if is_timers_paused == true:
+			current_timer.set_paused(false)
+			is_timers_paused = false
+			rest_clr_button_function = "Restart"
+		elif is_timers_paused == false: #if not apused, now pause
+			is_timers_paused = true
+			current_timer.set_paused(true)
