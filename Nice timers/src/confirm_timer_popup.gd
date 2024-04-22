@@ -19,7 +19,10 @@ func _ready(): ##### This whole for loop needs to change, should instantiate fro
 
 
 
-func _on_window_visible():
+func _on_window_visible(current_info, next_up):
+	print("current timer name is    ", current_info["name"])
+	print("current timer duration is     ", current_info["duration"])
+	print("up next is    ", next_up["name"], "  for ", next_up["duration"], " time units")
 	self.visible = true
 #	popup_window.resize_v_box()	
 	

@@ -5,7 +5,7 @@ class_name MainWindow
 @onready var pck_scne_task_box: PackedScene = preload("res://src/task_box.tscn")
 
 @onready var grid_container:= $BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer
-signal window_visible
+signal window_visible(current_info, next_up)
 signal window_hide
 
 #active unit outdated
@@ -97,7 +97,7 @@ func _on_button_pressed():
 
 
 func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
-
+	print("yo I did it")
 	
 	if schedule_button_function == "Start Schedule":
 		bound_timers[0].set_paused(false)
@@ -111,8 +111,8 @@ func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
 
 		
 		await bound_timers[0].timeout
-		window_visible.emit()
-	#	
+#		window_visible.emit()
+		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
 	#else: print("You finished, YAAY")
 
 	elif schedule_button_function == "Restart":
@@ -156,14 +156,16 @@ func _on_timer_transition():
 	if popup_called_times < bound_timers.size():
 		bound_timers[popup_called_times].set_paused(false)
 		is_timers_paused = false
-		print(bound_timers[popup_called_times])
+		current_timer = bound_timers[popup_called_times]
+		print("current timer is    ", bound_timers[popup_called_times])
 		
 		await bound_timers[popup_called_times].timeout
 		
 		if popup_called_times == bound_timers.size() - 1:
 			timer_popup_instance.get_node("StartNextTimer").text = "End Sched"
 		
-		window_visible.emit()
+#		window_visible.emit()
+		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
 
 		
 	else: #if end of timer
@@ -194,9 +196,12 @@ func _reset_schedule():
 			sched_vbox.get_child(child)._check_dev_mode()
 			sched_vbox.get_child(child).timer.set_paused(true)
 			is_timers_paused = true
+		
+		current_timer = bound_timers[0]
 				
 		schedule_button_function = "Start Schedule"
 		rest_clr_button_function = "Clear"
+
 
 	elif rest_clr_button_function == "Clear":
 		for child in sched_vbox.get_child_count():
@@ -261,7 +266,10 @@ func drag_on_add_task_button_pressed(task_name, task_duration):
 func _on_pause_play_button_pressed():
 	print(is_timers_paused)
 	if current_timer:
-
+		if schedule_button_function == "Start Schedule":
+			_on_start_schedule_pressed()
+			return
+			
 		if is_timers_paused == true:
 			current_timer.set_paused(false)
 			is_timers_paused = false
@@ -269,3 +277,14 @@ func _on_pause_play_button_pressed():
 		elif is_timers_paused == false: #if not apused, now pause
 			is_timers_paused = true
 			current_timer.set_paused(true)
+
+
+
+func _get_next_scheduled_timer(timer_sched, popup_times) -> Dictionary:
+	var next_up: Dictionary
+	if timer_sched.size() > popup_times+1:
+		next_up =  timer_sched[popup_times+1]
+	
+	else: next_up = {"name":"the end","duration":0}
+	
+	return next_up

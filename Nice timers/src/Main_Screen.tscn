@@ -171,12 +171,14 @@ layout_mode = 2
 text = "  Restart"
 
 [node name="PausePlayButton" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
+editor_description = "this should really just turn into start button"
 layout_mode = 2
 text = "Pause"
 
-[node name="Button2" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
+[node name="loop" type="CheckButton" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer"]
 layout_mode = 2
-text = "Loop"
+flat = true
+alignment = 1
 
 [node name="Control" type="Control" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer"]
 layout_mode = 2
