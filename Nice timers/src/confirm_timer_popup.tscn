@@ -3,50 +3,63 @@
 [ext_resource type="Script" path="res://src/confirm_timer_popup.gd" id="1_eiuan"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kbgu"]
-bg_color = Color(0.6, 0, 1, 1)
+bg_color = Color(0.368627, 0.4, 0.54902, 1)
 
-[node name="ConfirmTimerPopup" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("1_eiuan")
-
-[node name="StartNextTimer" type="Button" parent="."]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 1
+[node name="ConfirmTimerPopup" type="MarginContainer" node_paths=PackedStringArray("current_task_name_label", "next_timer_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -75.0
-offset_right = 64.0
-offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_eiuan")
+current_task_name_label = NodePath("StartNextTimer/ColorRect/CurrentTaskNameLabel2")
+next_timer_label = NodePath("StartNextTimer/ColorRect/NextTimerLabel")
+
+[node name="StartNextTimer" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_1kbgu")
 text = "Start Next Timer"
 
-[node name="TimerName" type="Label" parent="StartNextTimer"]
-visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Timer Name"
-
 [node name="ColorRect" type="ColorRect" parent="StartNextTimer"]
-visible = false
-show_behind_parent = true
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.344444
+offset_left = -1.0
+offset_bottom = -3.05176e-05
 grow_horizontal = 2
-grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.290196, 1, 0.290196, 0.396078)
+
+[node name="CurrentTaskNameLabel2" type="RichTextLabel" parent="StartNextTimer/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+bbcode_enabled = true
+scroll_active = false
+
+[node name="NextTimerLabel" type="Label" parent="StartNextTimer/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.5
+offset_top = -26.0
+offset_right = 64.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Nxt Timer: x min"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="StartNextTimer" to="." method="_on_start_next_timer_pressed"]

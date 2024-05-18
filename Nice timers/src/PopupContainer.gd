@@ -21,17 +21,17 @@ var v_separation := 200 - button_size_y
 func _ready():
 
 	
-#	_set_old_size(130)
-	print("newsize popup   ", get_window().get_size().y)
-	
-	print("view port ", get_parent().get_parent().get_viewport().get_visible_rect())
-	var viewport:= get_parent().get_parent().get_viewport().get_visible_rect()
-	
-	var popupdims = viewport.size
-	var popupX = popupdims[0]
-	var popupY = popupdims[1]
-
-	set_position( Vector2(popupX+390, popupY+50))
+##	_set_old_size(130)
+#	print("newsize popup   ", get_window().get_size().y)
+#
+#	print("view port ", get_parent().get_parent().get_viewport().get_visible_rect())
+#	var viewport:= get_parent().get_parent().get_viewport().get_visible_rect()
+#
+#	var popupdims = viewport.size
+#	var popupX = popupdims[0]
+#	var popupY = popupdims[1]
+#
+##	set_position( Vector2(popupX+390, popupY))
 	
 	
 	

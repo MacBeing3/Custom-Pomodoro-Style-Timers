@@ -5,6 +5,9 @@ extends Control
 signal popup_button_pressed
 
 @onready var popup_window :Window = get_tree().get_root().get_child(0).get_node("PopupContainer")
+@export var current_task_name_label:RichTextLabel
+@export var next_timer_label:Label
+
 
 @onready var popup_button_size_y :int = get_child(0).size.y
 
@@ -25,6 +28,15 @@ func _on_window_visible(current_info, next_up):
 	print("up next is    ", next_up["name"], "  for ", next_up["duration"], " time units")
 	self.visible = true
 #	popup_window.resize_v_box()	
+		
+#											italics strike			strikethough
+	current_task_name_label.text = "[center] [i] [s]" + current_info["name"] + " [s]"
+
+	
+#	current_task_name_label.text = current_info["name"] 
+
+	next_timer_label.text = "NEXT: " + next_up["name"] + " for " + str(next_up["duration"]) + " min"
+	
 	
 	popup_window.show()
 
@@ -53,6 +65,8 @@ func _on_start_next_timer_pressed():
 	popup_window.hide()
 		
 #	popup_window.set_size(popup_window.size - Vector2i(0,73))
+
+
 
 
 

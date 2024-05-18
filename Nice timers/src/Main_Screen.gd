@@ -14,6 +14,7 @@ signal window_hide
 @onready var sched_button :Button= $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule
 @onready var rest_clr_button:Button=$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/ResetButton
 @onready var pause_play_button:Button = 	$BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/PausePlayButton
+@onready var num_sched_completed_label = $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule/VBoxContainer/NumSchedCompleted
 
 
 @onready var current_timer:Timer = null
@@ -30,8 +31,12 @@ var num_tasks :int= 0
 @onready var timer_popup_scene : PackedScene = preload("res://src/confirm_timer_popup.tscn")
 @onready var timer_popup_instance
 @export var add_popup_child_to: String
-var popup_called_times:int=0
 
+var popup_called_times:int=0
+var num_schedules_completed:int = 0
+
+
+#state machine for schedule states? pause, play, invalid?
 var is_timers_paused = false:
 	set(pause_state):
 		is_timers_paused = pause_state
@@ -88,7 +93,6 @@ func _ready():
 ##create new timer button
 func _on_button_pressed():
 	print("button not work yet")
-	pass
 	var new_active_unit_instance = packed_scene_active_unit.instantiate()
 	grid_container.add_child(new_active_unit_instance)
 
@@ -107,13 +111,17 @@ func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
 		
 
 
-		schedule_button_function = "In Progress"
+		schedule_button_function = "| |"
 
 		
 		await bound_timers[0].timeout
 #		window_visible.emit()
 		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
-	#else: print("You finished, YAAY")
+
+	if schedule_button_function == "| |" or "| >":
+		_on_pause_play_button_pressed()
+	
+	
 
 	elif schedule_button_function == "Restart":
 
@@ -170,8 +178,8 @@ func _on_timer_transition():
 		
 	else: #if end of timer
 		schedule_button_function = "                                             ↗"
-		
-
+		num_schedules_completed += 1
+		num_sched_completed_label.text = str(num_schedules_completed) + " completed! "
 
 func _on_popup_pressed() -> void:
 	popup_called_times += 1
@@ -222,7 +230,8 @@ func _on_check_button_pressed():
 	print("devmode", dev_mode_enabled)
 
 	_reset_schedule()
-	
+	drag_on_add_task_button_pressed("test 1 timer", 1)
+	drag_on_add_task_button_pressed("test 2 timer", 1)
 	
 	#redoing function to take inputs instead
 	
@@ -270,13 +279,15 @@ func _on_pause_play_button_pressed():
 			_on_start_schedule_pressed()
 			return
 			
-		if is_timers_paused == true:
+		if is_timers_paused == true: #if paused, play timer
 			current_timer.set_paused(false)
 			is_timers_paused = false
+			schedule_button_function = "| |"
 			rest_clr_button_function = "Restart"
 		elif is_timers_paused == false: #if not apused, now pause
 			is_timers_paused = true
 			current_timer.set_paused(true)
+			schedule_button_function = "| >"
 
 
 
