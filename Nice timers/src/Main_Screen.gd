@@ -86,6 +86,7 @@ func _ready():
 	window_hide.connect(timer_popup_instance._on_window_hide)
 	
 	window_hide.emit()
+	#sched_button.disabled = false
 
 	if timers_scheduled == []:
 		schedule_button_function= "Invalid"
@@ -117,7 +118,8 @@ func _on_start_schedule_pressed(): #should replace with a pause and a stop timer
 		await bound_timers[0].timeout
 #		window_visible.emit()
 		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
-
+		#sched_button.disabled = true 
+		
 	if schedule_button_function == "| |" or "| >":
 		_on_pause_play_button_pressed()
 	
@@ -161,6 +163,7 @@ func _on_add_task_button_pressed(): #not used now I belive
 
 func _on_timer_transition():
 
+
 	if popup_called_times < bound_timers.size():
 		bound_timers[popup_called_times].set_paused(false)
 		is_timers_paused = false
@@ -172,14 +175,15 @@ func _on_timer_transition():
 		if popup_called_times == bound_timers.size() - 1:
 			timer_popup_instance.get_node("StartNextTimer").text = "End Sched"
 		
-#		window_visible.emit()
-		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
 
+		window_visible.emit(timers_scheduled[popup_called_times],_get_next_scheduled_timer(timers_scheduled, popup_called_times))
+		#sched_button.disabled = true 
 		
 	else: #if end of timer
 		schedule_button_function = "                                             ↗"
 		num_schedules_completed += 1
 		num_sched_completed_label.text = str(num_schedules_completed) + " completed! "
+
 
 func _on_popup_pressed() -> void:
 	popup_called_times += 1

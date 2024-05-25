@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnx7dlia8vaph"]
+[gd_scene load_steps=8 format=3 uid="uid://bnx7dlia8vaph"]
 
 [ext_resource type="Theme" uid="uid://dnfite8qns327" path="res://assets/Work_theme.tres" id="1_ljr25"]
 [ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_2cndg"]
-[ext_resource type="Texture2D" uid="uid://bgh1wcubseapk" path="res://assets/the-owl-house-03.jpg" id="2_iuvri"]
 [ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="4_s1j66"]
 [ext_resource type="Script" path="res://src/DropToActiveUnit.gd" id="5_4trxd"]
 [ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_4hosw"]
@@ -26,15 +25,14 @@ add_popup_child_to = "PopupContainer/PopUpParent"
 metadata/_edit_vertical_guides_ = [1280.0, 980.0]
 metadata/_edit_horizontal_guides_ = [22.0, 137.0]
 
-[node name="BackgroundImage" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_iuvri")
-expand_mode = 3
+color = Color(0.184314, 0.113725, 0.211765, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundImage"]
 layout_mode = 1
@@ -58,14 +56,14 @@ dragger_visibility = 1
 [node name="TimersBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(1, 0.627451, 1, 0.392157)
+color = Color(1, 0.627451, 1, 1)
 
 [node name="PresetsBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
 layout_mode = 2
 offset_right = 815.0
 offset_bottom = 670.0
 size_flags_vertical = 3
-color = Color(1, 1, 0.219608, 0.545098)
+color = Color(0.403922, 0.101961, 0.470588, 0.733333)
 
 [node name="VSplitContainer" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground"]
 layout_mode = 1

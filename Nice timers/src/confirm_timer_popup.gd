@@ -5,6 +5,8 @@ extends Control
 signal popup_button_pressed
 
 @onready var popup_window :Window = get_tree().get_root().get_child(0).get_node("PopupContainer")
+@onready var main_screen_node:Control= get_tree().get_root().get_child(0).get_node("MainWindow")
+@onready var sched_button:Button= get_tree().get_root().get_child(0).get_node("MainWindow/BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer/StartSchedule")
 @export var current_task_name_label:RichTextLabel
 @export var next_timer_label:Label
 
@@ -37,7 +39,7 @@ func _on_window_visible(current_info, next_up):
 
 	next_timer_label.text = "NEXT: " + next_up["name"] + " for " + str(next_up["duration"]) + " min"
 	
-	
+	sched_button.disabled = true
 	popup_window.show()
 
 	
@@ -62,6 +64,8 @@ func _on_window_hide():
 func _on_start_next_timer_pressed():
 	popup_button_pressed.emit()
 
+	sched_button.disabled = false
+	main_screen_node.is_timers_paused = false
 	popup_window.hide()
 		
 #	popup_window.set_size(popup_window.size - Vector2i(0,73))

@@ -51,7 +51,7 @@ func _on_changed_label(_type, label, minutes):
 	label.text = str(minutes) + " min"
 	
 
-func _on_active_unit_hide_toggled(b:bool):
+func _on_active_unit_hide_toggled(b:bool):  #p sure is legacy code
 	return
 	if b == true:
 		active_unit.visible = false
