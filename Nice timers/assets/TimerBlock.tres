@@ -30,7 +30,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gft7q"]
-bg_color = Color(0.6, 0.6, 0.6, 0.196078)
+bg_color = Color(0.507023, 0.626704, 0.636632, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjpe"]
 bg_color = Color(1, 0.690196, 0.870588, 1)
