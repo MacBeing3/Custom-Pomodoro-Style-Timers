@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dnfite8qns327"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://bgub05p37fxpm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkn45"]
 bg_color = Color(0.0941176, 0.454902, 0.596078, 1)
@@ -15,6 +15,13 @@ bg_color = Color(0.921569, 0.32549, 0.32549, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxbln"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ne5"]
+bg_color = Color(0.792157, 0.745098, 0.847059, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5p33"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgrm1"]
@@ -26,23 +33,47 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg6p6"]
 bg_color = Color(0, 0.721569, 0.321569, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc2oq"]
+bg_color = Color(0.533333, 0.419608, 0.627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnucb"]
+bg_color = Color(0.729412, 0.658824, 0.796078, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3iyy0"]
 bg_color = Color(0.0941176, 0.454902, 0.596078, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nd426"]
 bg_color = Color(0.211765, 0.682353, 0.486275, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4mhl"]
+bg_color = Color(0.729412, 0.658824, 0.796078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ei8c"]
+bg_color = Color(0.623529, 0.513726, 0.721569, 1)
+
 [resource]
 /styles/Background = SubResource("StyleBoxFlat_fkn45")
 /styles/Fill = SubResource("StyleBoxFlat_68n6j")
 /styles/Normal = SubResource("StyleBoxFlat_64akq")
 /styles/Reverse = SubResource("StyleBoxFlat_eccyn")
+BackgroundColor/styles/panel = null
+Button/colors/font_color = Color(0.301961, 0.223529, 0.368627, 1)
 Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0)
 Button/styles/disabled = SubResource("StyleBoxFlat_rxbln")
+Button/styles/normal = SubResource("StyleBoxFlat_32ne5")
 CheckButton/styles/focus = SubResource("StyleBoxFlat_d5p33")
 CheckButton/styles/hover = SubResource("StyleBoxFlat_tgrm1")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_njd82")
 CheckButton/styles/normal = SubResource("StyleBoxFlat_1pcf7")
 CheckButton/styles/pressed = SubResource("StyleBoxFlat_dg6p6")
+Panel/styles/panel = SubResource("StyleBoxFlat_oc2oq")
+PresetsBackground/styles/panel = SubResource("StyleBoxFlat_bnucb")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_3iyy0")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_nd426")
+StartSched/colors/font_color = Color(1, 1, 1, 1)
+StartSched/styles/normal = SubResource("StyleBoxFlat_h4mhl")
+TaskBoard/styles/panel = SubResource("StyleBoxFlat_1ei8c")

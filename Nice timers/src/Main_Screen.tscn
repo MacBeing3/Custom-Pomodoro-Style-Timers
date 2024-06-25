@@ -1,13 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnx7dlia8vaph"]
+[gd_scene load_steps=7 format=3 uid="uid://bnx7dlia8vaph"]
 
-[ext_resource type="Theme" uid="uid://dnfite8qns327" path="res://assets/Work_theme.tres" id="1_ljr25"]
+[ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_dvqrs"]
 [ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_2cndg"]
 [ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="4_s1j66"]
 [ext_resource type="Script" path="res://src/DropToActiveUnit.gd" id="5_4trxd"]
 [ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_4hosw"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1cmv"]
-bg_color = Color(0.235294, 0.6, 0.6, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcmgr"]
 bg_color = Color(0.113725, 0.113725, 0.113725, 0.713726)
@@ -19,20 +16,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_ljr25")
+theme = ExtResource("1_dvqrs")
 script = ExtResource("2_2cndg")
 add_popup_child_to = "PopupContainer/PopUpParent"
 metadata/_edit_vertical_guides_ = [1280.0, 980.0]
 metadata/_edit_horizontal_guides_ = [22.0, 137.0]
 
-[node name="BackgroundImage" type="ColorRect" parent="."]
+[node name="BackgroundImage" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.184314, 0.113725, 0.211765, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="BackgroundImage"]
 layout_mode = 1
@@ -53,17 +49,18 @@ theme_override_constants/separation = 40
 split_offset = 220
 dragger_visibility = 1
 
-[node name="TimersBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer"]
+[node name="TimersBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(1, 0.627451, 1, 1)
+theme = ExtResource("1_dvqrs")
+theme_type_variation = &"Panel2"
 
-[node name="PresetsBackground" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
+[node name="PresetsBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
 layout_mode = 2
 offset_right = 815.0
 offset_bottom = 670.0
 size_flags_vertical = 3
-color = Color(0.403922, 0.101961, 0.470588, 0.733333)
+theme_type_variation = &"PresetsBackground"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground"]
 layout_mode = 1
@@ -108,33 +105,43 @@ columns = 2
 
 [node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 task_name = "W5"
 minutes_duration = 5
 
 [node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 task_name = "Short Break"
 minutes_duration = 5
 
 [node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 task_name = "W10"
 minutes_duration = 10
 
 [node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 task_name = "Long Break"
 minutes_duration = 15
 
 [node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
 task_name = "W15"
 minutes_duration = 15
 
-[node name="TaskBoard" type="ColorRect" parent="BackgroundImage/MarginContainer/HSplitContainer"]
+[node name="TaskBoard" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.215686, 0.407843, 0.756863, 1)
+theme_type_variation = &"TaskBoard"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard"]
 layout_mode = 1
@@ -144,13 +151,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
-split_offset = -210
+split_offset = -223
 dragger_visibility = 1
 
 [node name="StartSchedule" type="Button" parent="BackgroundImage/MarginContainer/HSplitContainer/TaskBoard/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_t1cmv")
+theme_type_variation = &"StartSched"
 theme_override_styles/disabled = SubResource("StyleBoxFlat_lcmgr")
 text = "Start Schedule"
 

@@ -1,0 +1,61 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b2g0gp75ck0jk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmel2"]
+bg_color = Color(1, 0.568627, 0.819608, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50yrg"]
+bg_color = Color(1, 0.76, 0.904, 1)
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdlcc"]
+bg_color = Color(1, 0.76, 0.904, 1)
+corner_radius_top_left = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyimi"]
+bg_color = Color(1, 0.76, 0.904, 1)
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyu2m"]
+bg_color = Color(1, 0.690196, 0.870588, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gft7q"]
+bg_color = Color(0.6, 0.6, 0.6, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tjpe"]
+bg_color = Color(1, 0.690196, 0.870588, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxftf"]
+bg_color = Color(1, 0.69, 0.870833, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+Background/styles/panel = SubResource("StyleBoxFlat_rmel2")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_50yrg")
+DecreaseButton/styles/normal = SubResource("StyleBoxFlat_kdlcc")
+IncreaseButton/styles/normal = SubResource("StyleBoxFlat_uyimi")
+Label/colors/font_color = Color(0, 0, 0, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_iyu2m")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_gft7q")
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+TextEdit/styles/normal = SubResource("StyleBoxFlat_7tjpe")
+TimeRect/styles/panel = SubResource("StyleBoxFlat_xxftf")

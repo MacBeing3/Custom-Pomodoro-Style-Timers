@@ -1,10 +1,10 @@
 extends Control
 
-@onready var name_bar:= $ContentsContainer/TaskName
+@export var name_bar:Node
 
-@onready var increase_button : Button = $ContentsContainer/Control/ButtonAndDisplay/IncreaseButton
-@onready var decrease_button : Button = $ContentsContainer/Control/ButtonAndDisplay/DecreaseButton
-@onready var work_label :Label = $ContentsContainer/Control/ButtonAndDisplay/TimeRect/TimeSet
+@export var increase_button : Button 
+@export var decrease_button : Button
+@export var work_label :Label
 
 @onready var active_unit #= get_tree().get_root().get_child(0).get_child(0).get_node("BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/TaskVsPresetDivider/TaskBackground/MarginContainer/SelectedTaskContainer/ActiveUnit")
 
@@ -68,7 +68,7 @@ func _get_preview_control() -> Control:
 #    """
 	var preview = ColorRect.new()
 	preview.size = Vector2(300.0*0.50,100.0*0.50)
-	var preview_color = Color(1/255,50/255,32/255)
+	var preview_color = Color(255/255,126/255,202/255)
 	preview_color.a = .5
 	preview.color = preview_color
 	preview.set_rotation(.1) # in readians
