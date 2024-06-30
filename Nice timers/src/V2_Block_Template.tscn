@@ -25,10 +25,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
 mouse_filter = 1
 theme_type_variation = &"Background"
 
@@ -65,13 +63,11 @@ scroll_fit_content_height = true
 
 [node name="Control" type="MarginContainer" parent="ColorRect/MarginContainer/ContentsContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme_override_constants/margin_bottom = 10
 
-[node name="ButtonAndDisplay" type="HBoxContainer" parent="ColorRect/MarginContainer/ContentsContainer/Control"]
+[node name="ButtonAndDisplay" type="HFlowContainer" parent="ColorRect/MarginContainer/ContentsContainer/Control"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
 
 [node name="DecreaseButton" type="Button" parent="ColorRect/MarginContainer/ContentsContainer/Control/ButtonAndDisplay"]
 layout_mode = 2
