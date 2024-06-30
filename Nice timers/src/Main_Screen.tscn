@@ -46,6 +46,7 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 theme_override_constants/separation = 40
 split_offset = 220
+dragger_visibility = 1
 
 [node name="TimersBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -54,9 +55,12 @@ theme = ExtResource("1_dvqrs")
 theme_type_variation = &"Panel2"
 
 [node name="PresetsBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
-layout_mode = 2
-offset_right = 815.0
-offset_bottom = 670.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_type_variation = &"PresetsBackground"
 
