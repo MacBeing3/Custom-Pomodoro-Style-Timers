@@ -5,15 +5,14 @@
 [ext_resource type="AudioStream" uid="uid://ce74ftaj7hsvn" path="res://assets/kenney ui audio/switch34.ogg" id="7_qetub"]
 
 [node name="V2BlockTemplate" type="Control" node_paths=PackedStringArray("name_bar", "increase_button", "decrease_button", "work_label")]
-custom_minimum_size = Vector2(300, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("1_abjih")
 script = ExtResource("2_82eah")
 name_bar = NodePath("ColorRect/MarginContainer/ContentsContainer/TaskName")

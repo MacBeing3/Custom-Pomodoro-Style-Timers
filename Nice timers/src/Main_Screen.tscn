@@ -46,7 +46,6 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 theme_override_constants/separation = 40
 split_offset = 220
-dragger_visibility = 1
 
 [node name="TimersBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -89,14 +88,15 @@ size_flags_horizontal = 3
 text = "Import Presets"
 
 [node name="PresetsScrollContainer" type="ScrollContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer"]
-custom_minimum_size = Vector2(0, 202)
+clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 200
 theme_override_constants/v_separation = 50
@@ -104,36 +104,26 @@ columns = 2
 
 [node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
 task_name = "W5"
 minutes_duration = 5
 
 [node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
 task_name = "Short Break"
 minutes_duration = 5
 
 [node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
 task_name = "W10"
 minutes_duration = 10
 
 [node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
 task_name = "Long Break"
 minutes_duration = 15
 
 [node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
 layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 3
 task_name = "W15"
 minutes_duration = 15
 
