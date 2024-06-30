@@ -44,7 +44,6 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ContentsContainer" type="VSplitContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
 split_offset = -150
 dragger_visibility = 1
 
