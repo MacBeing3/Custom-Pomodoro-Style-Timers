@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b2g0gp75ck0jk"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b2g0gp75ck0jk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmel2"]
 bg_color = Color(1, 0.568627, 0.819608, 1)
@@ -6,6 +6,8 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3dnej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50yrg"]
 bg_color = Color(1, 0.76, 0.904, 1)
@@ -49,6 +51,10 @@ corner_radius_bottom_left = 2
 [resource]
 Background/styles/panel = SubResource("StyleBoxFlat_rmel2")
 Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_3dnej")
 Button/styles/normal = SubResource("StyleBoxFlat_50yrg")
 DecreaseButton/styles/normal = SubResource("StyleBoxFlat_kdlcc")
 IncreaseButton/styles/normal = SubResource("StyleBoxFlat_uyimi")

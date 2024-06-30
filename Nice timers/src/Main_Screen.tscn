@@ -19,8 +19,7 @@ grow_vertical = 2
 theme = ExtResource("1_dvqrs")
 script = ExtResource("2_2cndg")
 add_popup_child_to = "PopupContainer/PopUpParent"
-metadata/_edit_vertical_guides_ = [1280.0, 980.0]
-metadata/_edit_horizontal_guides_ = [22.0, 137.0]
+metadata/_edit_horizontal_guides_ = [25.0, 125.0]
 
 [node name="BackgroundImage" type="Panel" parent="."]
 layout_mode = 1

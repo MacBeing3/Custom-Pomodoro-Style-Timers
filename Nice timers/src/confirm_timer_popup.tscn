@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm14kkws0vu6d"]
+[gd_scene load_steps=4 format=3 uid="uid://dm14kkws0vu6d"]
 
 [ext_resource type="Script" path="res://src/confirm_timer_popup.gd" id="1_eiuan"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kbgu"]
-bg_color = Color(0.368627, 0.4, 0.54902, 1)
+[ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_tfmpi"]
+[ext_resource type="Script" path="res://src/confirm_timer_panel.gd" id="3_f7tjw"]
 
 [node name="ConfirmTimerPopup" type="MarginContainer" node_paths=PackedStringArray("current_task_name_label", "next_timer_label")]
 anchors_preset = 15
@@ -13,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_tfmpi")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -24,10 +24,10 @@ next_timer_label = NodePath("StartNextTimer/ColorRect/NextTimerLabel")
 [node name="StartNextTimer" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_1kbgu")
+theme_type_variation = &"Button"
 text = "Start Next Timer"
 
-[node name="ColorRect" type="ColorRect" parent="StartNextTimer"]
+[node name="ColorRect" type="Panel" parent="StartNextTimer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -36,7 +36,7 @@ offset_left = -1.0
 offset_bottom = -3.05176e-05
 grow_horizontal = 2
 size_flags_vertical = 3
-color = Color(0.290196, 1, 0.290196, 0.396078)
+script = ExtResource("3_f7tjw")
 
 [node name="CurrentTaskNameLabel2" type="RichTextLabel" parent="StartNextTimer/ColorRect"]
 layout_mode = 1
@@ -62,4 +62,5 @@ grow_vertical = 0
 text = "Nxt Timer: x min"
 horizontal_alignment = 1
 
+[connection signal="focus_entered" from="StartNextTimer" to="StartNextTimer/ColorRect" method="_on_start_next_timer_focus_entered"]
 [connection signal="pressed" from="StartNextTimer" to="." method="_on_start_next_timer_pressed"]
