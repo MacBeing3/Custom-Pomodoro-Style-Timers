@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://copog28wbqil2"]
+
+[ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_t0ws3"]
+[ext_resource type="Script" path="res://src/DropToActiveUnit.gd" id="1_xdudk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcmgr"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 0.713726)
+
+[node name="TaskBoard" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_t0ws3")
+theme_type_variation = &"TaskBoard"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+split_offset = -150
+dragger_visibility = 1
+
+[node name="StartSchedule" type="Button" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"StartSched"
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lcmgr")
+text = "Start Schedule"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VSplitContainer/StartSchedule"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+
+[node name="ResetButton" type="Button" parent="VSplitContainer/StartSchedule/VBoxContainer"]
+layout_mode = 2
+text = "  Restart"
+
+[node name="PausePlayButton" type="Button" parent="VSplitContainer/StartSchedule/VBoxContainer"]
+editor_description = "this should really just turn into start button"
+visible = false
+layout_mode = 2
+text = "Pause"
+
+[node name="loop" type="CheckButton" parent="VSplitContainer/StartSchedule/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Loop"
+flat = true
+alignment = 1
+
+[node name="NumSchedCompleted" type="Label" parent="VSplitContainer/StartSchedule/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "0 completed "
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScheduleVBox" type="VBoxContainer" parent="VSplitContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Container2" type="Container" parent="VSplitContainer/Control"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_xdudk")
+is_active_unit_child = false
