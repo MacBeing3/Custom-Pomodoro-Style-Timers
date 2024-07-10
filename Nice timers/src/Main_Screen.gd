@@ -65,6 +65,9 @@ var rest_clr_button_function = "Restart":
 		return rest_clr_button_function
 	
 func _ready():
+	
+	var scheduler:Button = $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard.get_node("VSplitContainer/StartSchedule")
+	scheduler.pressed.connect(_on_start_schedule_pressed)
 	timer_popup_instance = timer_popup_scene.instantiate()
 	var project_root_node := get_tree().get_root().get_node("ProjectManagerNode")
 
