@@ -14,9 +14,17 @@ func _ready():
 	#evertything greater than position.x + size.x = grey
 	var positionV
 	var sizeV
-	var left_rect = Rect2(Vector2(0,0), Vector2(position.x, viewport_size.y))
-	var right_rect = Rect2(Vector2(0,0),Vector2(0,0))
+	var left_rect := Rect2(Vector2(0,0), Vector2(position.x, viewport_size.y))
+	var right_rect := Rect2(Vector2(position.x+size.x,0),Vector2(position.x,viewport_size.y))
 	
+	var top_rect := Rect2(Vector2(position.x,0),Vector2(size.x,(viewport_size.y - size.y)/2))
+	
+	var bottom_rect := Rect2(Vector2(position.x,position.y),Vector2(size.x,(viewport_size.y - size.y)/2))
+	
+	var all_rects := [left_rect,right_rect,top_rect,bottom_rect]
+	
+	for rect in all_rects:
+		draw_rect(rect,Color(250,250,250))
 #	draw_rect(rect: Rect2, color: Color, filled: bool = true, width: float = -1.0)
 	
 
