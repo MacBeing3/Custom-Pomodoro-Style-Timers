@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnx7dlia8vaph"]
+[gd_scene load_steps=7 format=3 uid="uid://bnx7dlia8vaph"]
 
 [ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_dvqrs"]
 [ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_2cndg"]
 [ext_resource type="PackedScene" uid="uid://copog28wbqil2" path="res://src/Scenes/task_board.tscn" id="4_lk80d"]
 [ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="4_s1j66"]
+[ext_resource type="Script" path="res://src/highlight.gd" id="5_e75xi"]
 [ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_4hosw"]
 
 [node name="MainWindow" type="Control"]
@@ -131,6 +132,30 @@ minutes_duration = 15
 [node name="TaskBoard" parent="BackgroundImage/MarginContainer/HSplitContainer" instance=ExtResource("4_lk80d")]
 layout_mode = 2
 
+[node name="grey part" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.611765, 0.611765, 0.611765, 0.623529)
+
+[node name="highlight" type="ColorRect" parent="grey part"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 492.0
+offset_top = 347.0
+offset_right = -418.0
+offset_bottom = -207.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.235294)
+script = ExtResource("5_e75xi")
+
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
 size = Vector2i(450, 162)
@@ -168,6 +193,14 @@ layout_mode = 0
 offset_right = 32.0
 offset_bottom = 16.0
 text = "Dv mde"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 95.0
+offset_right = 166.0
+offset_bottom = 26.0
+toggle_mode = true
+text = "Help"
 
 [connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/TopButtons/CreateNewTimer" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]

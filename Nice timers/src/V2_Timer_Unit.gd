@@ -37,13 +37,30 @@ func _get_drag_data(_position):
 	return preset_data
 
 func _on_increase_button_pressed():
-	minutes_duration+=1
+	if Input.is_action_pressed("Button+5"):
+		if minutes_duration < 5:
+			minutes_duration = 5
+		else: 
+			minutes_duration = 5 * (floori(minutes_duration / 5) +1)
+		
+	else: minutes_duration+=1
+	
 	_on_changed_label("work", work_label,minutes_duration)
 	
 func _on_decrease_button_pressed():
 	if minutes_duration > 1:
-		minutes_duration -=1
-		_on_changed_label("work", work_label,minutes_duration)
+		if Input.is_action_pressed("Button+5"):
+			if minutes_duration <= 5:
+				minutes_duration = 1
+			else: 
+				if minutes_duration % 5 == 0:
+					minutes_duration = 5 * (floori(minutes_duration / 5) -1)
+					
+				else: minutes_duration = 5 * (floori(minutes_duration / 5))
+			
+		else: minutes_duration -=1
+		
+	_on_changed_label("work", work_label,minutes_duration)
 
 
 

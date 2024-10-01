@@ -68,6 +68,11 @@ func _ready():
 	
 	var scheduler:Button = $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard.get_node("VSplitContainer/StartSchedule")
 	scheduler.pressed.connect(_on_start_schedule_pressed)
+
+	
+	var reset:Button = $BackgroundImage/MarginContainer/HSplitContainer/TaskBoard.get_node("VSplitContainer/StartSchedule/VBoxContainer/ResetButton")
+	reset.pressed.connect(_reset_schedule)
+	
 	timer_popup_instance = timer_popup_scene.instantiate()
 	var project_root_node := get_tree().get_root().get_node("ProjectManagerNode")
 
@@ -137,6 +142,7 @@ func _on_add_task_button_pressed(): #not used now I belive
 	
 	
 	#adds new to timers_schedule
+#	scheduling system name and duration, plus is devmode?
 	var new_task:= {}
 	new_task["name"] =  active_unit.name_bar.text
 	new_task["duration"] = active_unit.minutes_duration
@@ -149,7 +155,8 @@ func _on_add_task_button_pressed(): #not used now I belive
 	#assign task_boxes from dictionary			#would just need to call this if importing list
 	if timers_scheduled.size()>=1:
 		schedule_button_function= "Start Schedule"
-	
+
+	#taskbx is the box that shows how full, appears in task_board
 	#instanciate taskbox scene were task_name is active.namebar.text, taskminutes is active.minutesdura, and timer dur is active.minutesdura
 	var new_task_box_inst = pck_scne_task_box.instantiate()
 	new_task_box_inst.nom = active_unit.name_bar.text
