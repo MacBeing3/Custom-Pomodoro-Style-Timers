@@ -20,7 +20,7 @@ var v_separation := 200 - button_size_y
 
 func _ready():
 
-	
+	pass
 ##	_set_old_size(130)
 #	print("newsize popup   ", get_window().get_size().y)
 #
@@ -35,8 +35,9 @@ func _ready():
 	
 	
 	
-func resize_v_box(): #called on _on_window_hide/show in confirm_timer_popup
-#	pass  #NOTE THIS PASS MEANS EVERYTHING BLANK PAST IT
+func resize_v_box(): 	
+	#called on _on_window_hide/show in confirm_timer_popup
+	#	pass  #NOTE THIS PASS MEANS EVERYTHING BLANK PAST IT
 	#this should being called when a timer confirm button is hidden or seen
 	#should add size of button + spacing if showing
 	#should minus it if hidden
