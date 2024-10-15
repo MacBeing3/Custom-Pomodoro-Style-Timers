@@ -2,8 +2,8 @@ extends ColorRect
 class_name HighlightChild
 
 @onready var highlight:ColorRect = get_child(0)
-@onready var highlight_percent_size = Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
-	#MULTIPLY highlight size by this
+@onready var og_highlight_percent_size = Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
+#take highlight percent and divide by og-percent
 
 @export var background_dim:Color
 
@@ -43,11 +43,8 @@ func _draw():
 func _calculate_highlight():
 	var viewport = get_viewport_rect()
 
-	#highlight_percent_size
-	#highlight.size.x *= highlight_percent_size.x
-	#highlight.size.y *= highlight_percent_size.y
-	#shrinks it even when aat base
-	#put this calced size over intiial percent size
+	highlight.size *= og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
+	print(highlight.size)	#when decrease viewport size, that increase hihglight.size 
 	
 	
 	var left_rect := Rect2(
