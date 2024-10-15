@@ -44,8 +44,8 @@ func _calculate_highlight():
 	var viewport = get_viewport_rect()
 
 	#highlight_percent_size
-	highlight.size.x *= highlight_percent_size.x
-	highlight.size.y *= highlight_percent_size.y
+	#highlight.size.x *= highlight_percent_size.x
+	#highlight.size.y *= highlight_percent_size.y
 	#shrinks it even when aat base
 	#put this calced size over intiial percent size
 	
