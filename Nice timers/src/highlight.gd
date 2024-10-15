@@ -43,9 +43,13 @@ func _draw():
 func _calculate_highlight():
 	var viewport = get_viewport_rect()
 
-	highlight.size *= og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
-	print(highlight.size)	#when decrease viewport size, that increase hihglight.size 
-	
+
+	#perc_of_vp_size should = og_highlght_percent_size
+	#tf highlight.size needs to change				#second half is not really adjusting much
+	var percent_changer= og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
+	print("og print size   ", og_highlight_percent_size)
+	print(og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y))	#when decrease viewport size, that increase hihglight.size 
+	highlight.size *= percent_changer
 	
 	var left_rect := Rect2(
 	Vector2(0,0), #position
