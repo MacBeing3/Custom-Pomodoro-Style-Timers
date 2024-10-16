@@ -7,22 +7,17 @@ class_name HighlightChild
 
 @export var background_dim:Color
 
+var alert_warning:bool=true
 
 var all_rects:Array
-#TODO shoudl scale with size of viewport to always take up percetnage size
-#set size in ready to be controlled by @export size
-#make it percent of viewport size in ready
-
-#at ready should take size and convert it itno a percentage of the viewport
-#scaled size shoud then be used in hihglight size
 
 var some_time = 0
 
 func _process(_delta):
-	highlight.position = Vector2(get_global_mouse_position().x - (0.5 * highlight.size.x), get_global_mouse_position().y - (0.5 * highlight.size.y))
+	#highlight.position = Vector2(get_global_mouse_position().x - (0.5 * highlight.size.x), get_global_mouse_position().y - (0.5 * highlight.size.y))
 	_calculate_highlight()
 	some_time +=1
-	if some_time == 10:
+	if some_time == 3:
 		queue_redraw()
 		some_time = 0
 
@@ -32,7 +27,7 @@ func _process(_delta):
 func _ready():
 	highlight.color = Color(0,0,0,0)
 
-
+	get_viewport().size_changed.connect(viewport_size_change)
 func _draw():
 	_calculate_highlight()
 	for rect in all_rects:
@@ -44,12 +39,8 @@ func _calculate_highlight():
 	var viewport = get_viewport_rect()
 
 
-	#perc_of_vp_size should = og_highlght_percent_size
-	#tf highlight.size needs to change				#second half is not really adjusting much
-	var percent_changer= og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
-	print("og print size   ", og_highlight_percent_size)
-	print(og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y))	#when decrease viewport size, that increase hihglight.size 
-	highlight.size *= percent_changer
+
+	
 	
 	var left_rect := Rect2(
 	Vector2(0,0), #position
@@ -74,3 +65,17 @@ func _calculate_highlight():
 	)
 	
 	all_rects = [left_rect,right_rect,top_rect,bottom_rect]
+
+
+func viewport_size_change():
+		#tf highlight.size needs to change				#second half is not really adjusting much
+	var percent_changer= og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y)
+	#print("og print size   ", og_highlight_percent_size)
+	#print(og_highlight_percent_size/Vector2(highlight.size.x/get_viewport().size.x, highlight.size.y/get_viewport().size.y))	#when decrease viewport size, that increase hihglight.size 
+	highlight.size *= percent_changer #this seems to work
+	
+	#if change it to an array of sizes and positions, then can use size = array_size[current_size] * percent_changer
+	#on viewport size changed
+	if alert_warning == true:
+		push_warning("highlight box wrong size now")
+		alert_warning = false
