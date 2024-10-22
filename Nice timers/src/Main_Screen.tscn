@@ -133,6 +133,7 @@ minutes_duration = 15
 layout_mode = 2
 
 [node name="HighlightHelpPopUp" parent="." instance=ExtResource("5_gsp5j")]
+visible = false
 layout_mode = 0
 
 [node name="FileDialog" type="FileDialog" parent="."]
