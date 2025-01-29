@@ -14,12 +14,13 @@ var all_rects:Array
 var some_time = 0
 
 func _process(_delta):
-	#highlight.position = Vector2(get_global_mouse_position().x - (0.5 * highlight.size.x), get_global_mouse_position().y - (0.5 * highlight.size.y))
-	_calculate_highlight()
-	some_time +=1
-	if some_time == 3:
-		queue_redraw()
-		some_time = 0
+	if self.visible:
+		#highlight.position = Vector2(get_global_mouse_position().x - (0.5 * highlight.size.x), get_global_mouse_position().y - (0.5 * highlight.size.y))
+		_calculate_highlight()
+		some_time +=1
+		if some_time == 3:
+			queue_redraw()
+			some_time = 0
 
 	
 

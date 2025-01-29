@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crenxol6j041d"]
+[gd_scene load_steps=6 format=3 uid="uid://crenxol6j041d"]
 
 [ext_resource type="Theme" uid="uid://4fqnc0gko40p" path="res://assets/Help_Screen.tres" id="1_25ut4"]
 [ext_resource type="Script" path="res://src/highlight.gd" id="1_re5u8"]
@@ -64,9 +64,6 @@ _data = {
 "highlight timer": SubResource("Animation_wodpx")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_2strh"]
-font_size = 12
-
 [node name="HighlightHelpPopUp" type="ColorRect"]
 top_level = true
 mouse_filter = 1
@@ -88,6 +85,7 @@ offset_right = 339.0
 offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(1, 1, 0, 0.294118)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -95,36 +93,3 @@ autoplay = "highlight timer"
 libraries = {
 "": SubResource("AnimationLibrary_8iopw")
 }
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 214.0
-offset_bottom = 102.0
-theme = ExtResource("1_25ut4")
-theme_type_variation = &"Background"
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.056
-anchor_right = 0.944
-offset_left = 0.0159998
-offset_right = -0.0160065
-offset_bottom = 78.0
-grow_horizontal = 2
-text = "this is the information about the help prompt. this is so cool"
-label_settings = SubResource("LabelSettings_2strh")
-autowrap_mode = 2
-visible_characters = 0
-visible_ratio = 0.0
-
-[node name="Button" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -31.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Next"

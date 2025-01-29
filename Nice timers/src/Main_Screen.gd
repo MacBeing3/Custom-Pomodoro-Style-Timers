@@ -190,9 +190,7 @@ func _on_timer_transition():
 		#sched_button.disabled = true 
 		
 	else: #if end of timer
-		schedule_button_function = "                                             ↗"
-		num_schedules_completed += 1
-		num_sched_completed_label.text = str(num_schedules_completed) + " completed! "
+		_end_schedule()
 
 
 func _on_popup_pressed() -> void:
@@ -234,11 +232,14 @@ func _reset_schedule():
 		schedule_button_function = "Invalid"
 		rest_clr_button_function = "Restart"
 
-
 func _on_cancel_pressed():
 	_reset_schedule()
 
-
+func _end_schedule():
+	schedule_button_function = "                                             ↗"
+	num_schedules_completed += 1
+	num_sched_completed_label.text = str(num_schedules_completed) + " completed! "
+	
 func _on_check_button_pressed():
 	dev_mode_enabled = not dev_mode_enabled
 	print("devmode", dev_mode_enabled)
@@ -302,7 +303,6 @@ func _on_pause_play_button_pressed():
 			is_timers_paused = true
 			current_timer.set_paused(true)
 			schedule_button_function = "| >"
-
 
 
 func _get_next_scheduled_timer(timer_sched, popup_times) -> Dictionary:
