@@ -22,8 +22,10 @@ signal window_hide
 @onready var dev_mode_toggle_button:CheckButton= get_node("CheckButton")
 var dev_mode_enabled :bool= false
 
+#I should make the custom timers into it's own class eventually
+#so do CustomTimer.new("name":x, "duration":3)
 var timers_scheduled:Array #array of dictionaries: "name", "duration" #export this so can easily save presets?
-var bound_timers:Array
+var bound_timers:Array ## timers_scheduled's corresponding timerblocks on task_board
 var num_tasks :int= 0
 
 #var schedule_state:String= "paused"
@@ -33,7 +35,7 @@ var num_tasks :int= 0
 @export var add_popup_child_to: String
 
 var popup_called_times:int=0
-var num_schedules_completed:int = 0
+var total_mins_worked:int = 0
 
 
 #state machine for schedule states? pause, play, invalid?
@@ -237,8 +239,10 @@ func _on_cancel_pressed():
 
 func _end_schedule():
 	schedule_button_function = "                                             ↗"
-	num_schedules_completed += 1
-	num_sched_completed_label.text = str(num_schedules_completed) + " completed! "
+	for timer in timers_scheduled:
+		total_mins_worked += timer.duration
+
+	num_sched_completed_label.text = str(total_mins_worked) + " minutes worked! "
 	
 func _on_check_button_pressed():
 	dev_mode_enabled = not dev_mode_enabled
