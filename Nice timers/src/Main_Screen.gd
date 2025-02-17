@@ -19,8 +19,8 @@ signal window_hide
 
 @onready var current_timer:Timer = null
 
-@onready var dev_mode_toggle_button:CheckButton= get_node("CheckButton")
-var dev_mode_enabled :bool= false
+#makes this always in seconds
+@export var dev_mode_enabled :bool= false
 
 #I should make the custom timers into it's own class eventually
 #so do CustomTimer.new("name":x, "duration":3)
@@ -244,13 +244,6 @@ func _end_schedule():
 
 	num_sched_completed_label.text = str(total_mins_worked) + " minutes worked! "
 	
-func _on_check_button_pressed():
-	dev_mode_enabled = not dev_mode_enabled
-	print("devmode", dev_mode_enabled)
-
-	_reset_schedule()
-	drag_on_add_task_button_pressed("test 1 timer", 1)
-	drag_on_add_task_button_pressed("test 2 timer", 1)
 	
 	#redoing function to take inputs instead
 	

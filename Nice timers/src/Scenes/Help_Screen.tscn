@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnx7dlia8vaph"]
+[gd_scene load_steps=8 format=3 uid="uid://dfmywrneq73ac"]
 
-[ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_dvqrs"]
-[ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_2cndg"]
-[ext_resource type="PackedScene" uid="uid://copog28wbqil2" path="res://src/Scenes/task_board.tscn" id="4_lk80d"]
-[ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="4_s1j66"]
-[ext_resource type="PackedScene" uid="uid://crenxol6j041d" path="res://src/highlight_help_pop_up.tscn" id="5_gsp5j"]
-[ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_4hosw"]
-[ext_resource type="Script" path="res://src/HelpButton.gd" id="7_ogjl7"]
+[ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_77auv"]
+[ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_8rebn"]
+[ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="3_qws2q"]
+[ext_resource type="PackedScene" uid="uid://copog28wbqil2" path="res://src/Scenes/task_board.tscn" id="4_512do"]
+[ext_resource type="PackedScene" uid="uid://crenxol6j041d" path="res://src/highlight_help_pop_up.tscn" id="5_rdwrn"]
+[ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_vdlxx"]
+[ext_resource type="Script" path="res://src/HelpButton.gd" id="7_rlyjq"]
 
 [node name="MainWindow" type="Control"]
 layout_mode = 3
@@ -15,8 +15,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_dvqrs")
-script = ExtResource("2_2cndg")
+theme = ExtResource("1_77auv")
+script = ExtResource("2_8rebn")
+dev_mode_enabled = true
 add_popup_child_to = "PopupContainer/PopUpParent"
 metadata/_edit_horizontal_guides_ = [25.0, 125.0]
 
@@ -50,7 +51,7 @@ dragger_visibility = 1
 [node name="TimersBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("1_dvqrs")
+theme = ExtResource("1_77auv")
 theme_type_variation = &"Panel2"
 
 [node name="PresetsBackground" type="Panel" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground"]
@@ -105,35 +106,35 @@ theme_override_constants/h_separation = 200
 theme_override_constants/v_separation = 50
 columns = 2
 
-[node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate2" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("3_qws2q")]
 layout_mode = 2
 task_name = "W5"
 minutes_duration = 5
 
-[node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("3_qws2q")]
 layout_mode = 2
 task_name = "Short Break"
 minutes_duration = 5
 
-[node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate3" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("3_qws2q")]
 layout_mode = 2
 task_name = "W10"
 minutes_duration = 10
 
-[node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate4" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("3_qws2q")]
 layout_mode = 2
 task_name = "Long Break"
 minutes_duration = 15
 
-[node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("4_s1j66")]
+[node name="V2BlockTemplate5" parent="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/PresetsScrollContainer/GridContainer" instance=ExtResource("3_qws2q")]
 layout_mode = 2
 task_name = "W15"
 minutes_duration = 15
 
-[node name="TaskBoard" parent="BackgroundImage/MarginContainer/HSplitContainer" instance=ExtResource("4_lk80d")]
+[node name="TaskBoard" parent="BackgroundImage/MarginContainer/HSplitContainer" instance=ExtResource("4_512do")]
 layout_mode = 2
 
-[node name="HighlightHelpPopUp" parent="." instance=ExtResource("5_gsp5j")]
+[node name="HighlightHelpPopUp" parent="." instance=ExtResource("5_rdwrn")]
 visible = false
 layout_mode = 0
 
@@ -146,7 +147,7 @@ root_subfolder = "res://Timer Presets/"
 
 [node name="Popup" type="Popup" parent="."]
 size = Vector2i(200, 400)
-script = ExtResource("6_4hosw")
+script = ExtResource("6_vdlxx")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Popup"]
 anchors_preset = 15
@@ -176,14 +177,13 @@ offset_bottom = 16.0
 text = "Dv mde"
 
 [node name="HelpButton" type="Button" parent="."]
+modulate = Color(0.317647, 1, 1, 1)
 layout_mode = 0
 offset_left = 95.0
 offset_right = 166.0
 offset_bottom = 26.0
 toggle_mode = true
 text = "Help"
-script = ExtResource("7_ogjl7")
-go_to = 1
+script = ExtResource("7_rlyjq")
 
 [connection signal="pressed" from="BackgroundImage/MarginContainer/HSplitContainer/TimersBackground/PresetsBackground/VSplitContainer/TopButtons/CreateNewTimer" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CheckButton" to="." method="_on_check_button_pressed"]
