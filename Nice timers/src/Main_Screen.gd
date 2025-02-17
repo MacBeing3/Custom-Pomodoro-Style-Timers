@@ -151,7 +151,7 @@ func _on_add_task_button_pressed(): #not used now I belive
 	
 	timers_scheduled.push_back(new_task)
 	#worth saving the taking of the array if want to have imports/presets
-
+	#also done on line 262 - should do func debug
 	print("timer scheduled    ", timers_scheduled)
 	
 	#assign task_boxes from dictionary			#would just need to call this if importing list
@@ -258,7 +258,7 @@ func drag_on_add_task_button_pressed(task_name, task_duration):
 	
 	timers_scheduled.push_back(new_task)
 	#worth saving the taking of the array if want to have imports/presets
-
+	#also done on line 155 - should do func debug
 	print("timer scheduled    ", timers_scheduled)
 	
 	#assign task_boxes from dictionary			#would just need to call this if importing list

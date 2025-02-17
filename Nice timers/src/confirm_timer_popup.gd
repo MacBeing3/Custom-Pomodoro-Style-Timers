@@ -19,7 +19,7 @@ signal popup_button_pressed
 
 #@onready var parent_of_timer_unit_node:Node2D 
 func _ready(): ##### This whole for loop needs to change, should instantiate from proj root node, then connect from there
-	print("parent of inst window:   ", get_parent())
+	#print("parent of inst window:   ", get_parent())
 	print("index of window popup is :  ", get_index())
 
 

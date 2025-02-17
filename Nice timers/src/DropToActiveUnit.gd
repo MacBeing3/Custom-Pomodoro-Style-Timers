@@ -2,14 +2,14 @@ extends Container
 
 
 signal active_unit_hidden(b:bool)
-@onready var this_window:= get_tree().get_root().get_node("ProjectManagerNode").get_child(0) #gets "mainwindow" / help window
+@onready var this_window:= get_tree().get_root().get_node("ProjectManagerNode").get_node("MainWindow") #gets "mainwindow" / help window
 @export var is_active_unit_child:bool = true
 
 func _ready():
 	self.tree_entered.connect(_update_this_window) ##this doesnt work, not work on tree change
 
 func _can_drop_data(_position, data):
-	print("can drop")
+	#print("can drop")
 	return typeof(data) == TYPE_DICTIONARY and data.has("name") and data.has("duration")
 
 func _drop_data(_position, data):

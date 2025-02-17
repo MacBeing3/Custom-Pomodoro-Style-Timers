@@ -16,8 +16,8 @@ extends Control
 signal active_unit_hidden(b:bool)
 
 func _ready():
-
-	print("active unit", active_unit)
+	# i think active unit is depreciated
+	#print("active unit", active_unit)
 	active_unit_hidden.connect(_on_active_unit_hide_toggled)
 	
 	name_bar.text = task_name
@@ -27,7 +27,7 @@ func _ready():
 	decrease_button.pressed.connect(_on_decrease_button_pressed)
 
 func _get_drag_data(_position):
-	print("get drag data going brr")
+	#print("get drag data going brr")
 #	active_unit_hidden.emit(true)
 
 	var preset_data = {"name":name_bar.text, "duration":minutes_duration}

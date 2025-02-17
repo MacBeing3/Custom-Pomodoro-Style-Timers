@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfmywrneq73ac"]
+[gd_scene load_steps=7 format=3 uid="uid://dfmywrneq73ac"]
 
 [ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_77auv"]
 [ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_8rebn"]
 [ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="3_qws2q"]
 [ext_resource type="PackedScene" uid="uid://copog28wbqil2" path="res://src/Scenes/task_board.tscn" id="4_512do"]
 [ext_resource type="PackedScene" uid="uid://crenxol6j041d" path="res://src/highlight_help_pop_up.tscn" id="5_rdwrn"]
-[ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_vdlxx"]
 [ext_resource type="Script" path="res://src/HelpButton.gd" id="7_rlyjq"]
 
 [node name="MainWindow" type="Control"]
@@ -145,11 +144,10 @@ ok_button_text = "Open"
 file_mode = 0
 root_subfolder = "res://Timer Presets/"
 
-[node name="Popup" type="Popup" parent="."]
+[node name="importCSVPresets" type="Popup" parent="."]
 size = Vector2i(200, 400)
-script = ExtResource("6_vdlxx")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Popup"]
+[node name="VSplitContainer" type="VSplitContainer" parent="importCSVPresets"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,12 +157,12 @@ size_flags_vertical = 3
 split_offset = 20
 dragger_visibility = 1
 
-[node name="Label" type="Label" parent="Popup/VSplitContainer"]
+[node name="Label" type="Label" parent="importCSVPresets/VSplitContainer"]
 layout_mode = 2
 text = "Import CSV Presets"
 horizontal_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="Popup/VSplitContainer"]
+[node name="TextEdit" type="TextEdit" parent="importCSVPresets/VSplitContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 size_flags_vertical = 3

@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnx7dlia8vaph"]
+[gd_scene load_steps=7 format=3 uid="uid://bnx7dlia8vaph"]
 
 [ext_resource type="Theme" uid="uid://bgub05p37fxpm" path="res://assets/Main_screen.tres" id="1_dvqrs"]
 [ext_resource type="Script" path="res://src/Main_Screen.gd" id="2_2cndg"]
 [ext_resource type="PackedScene" uid="uid://copog28wbqil2" path="res://src/Scenes/task_board.tscn" id="4_lk80d"]
 [ext_resource type="PackedScene" uid="uid://cykgmfsn1whj8" path="res://src/V2_Block_Template.tscn" id="4_s1j66"]
 [ext_resource type="PackedScene" uid="uid://crenxol6j041d" path="res://src/highlight_help_pop_up.tscn" id="5_gsp5j"]
-[ext_resource type="Script" path="res://src/ImportTextPopup.gd" id="6_4hosw"]
 [ext_resource type="Script" path="res://src/HelpButton.gd" id="7_ogjl7"]
 
 [node name="MainWindow" type="Control"]
@@ -146,7 +145,6 @@ root_subfolder = "res://Timer Presets/"
 
 [node name="Popup" type="Popup" parent="."]
 size = Vector2i(200, 400)
-script = ExtResource("6_4hosw")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Popup"]
 anchors_preset = 15
